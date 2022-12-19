@@ -27,3 +27,8 @@ st.title('Spotify Super Users')
 # image_1 = Image.open('streaming-illustration-v-2019-billboard-1548.webp')
 
 # st.image(image_1, width=1000)
+
+url1 = r'https://media.githubusercontent.com/media/dataPracticum/codepudding/main/spotify/spotify_dataset.csv'
+
+@st.cache
+full = pd.read_csv(url1, on_bad_lines='skip', names=['user_id', 'artist_name', 'track_name', 'playlist_name'])
