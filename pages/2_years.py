@@ -147,6 +147,9 @@ with st.expander('Details'):
     'we can see the scale at which the top five are more popular than the rest. Looking across the years, we see many of these artists',
     'appear multiple times in a particular year, and multiple times across a year. ')
 
+st.title('')
+
+st.title('')
 
 ############################################
 
@@ -162,4 +165,44 @@ with st.expander('Details'):
             'our key target is popularity.  ')
 
 
+st.title('')
+
+st.title('')
 ####################################################
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader('Top 5 Genres of the Decade')
+
+    top_genre = top10.genre.value_counts().nlargest(5)
+    st.write(px.bar(top_genre, title='Top 5 Genres of the Decade', height=600, width = 600, template='plotly_white', 
+            color_discrete_sequence=['green'], labels={'index': 'Genres', 'value': 'Number of Songs'}))
+
+    st.title('')
+
+    st.title('')
+
+with col2:
+    st.title('')
+    st.title('')
+    st.title('')
+    image = Image.open('favorite genres.png')
+    st.image(image, use_column_width=True)
+
+#################################################
+
+
+categories = st.multiselect('What categories do you want to look at', ['bpm', 'nrgy', 'dnce', 'dB', 'live', 'val', 'dur', 'acous', 'spch',
+       'pop'])
+for category in categories:
+    top_category = top10[category].value_counts()
+    st.write(px.bar(top_category, title='Distribution of '+  str.upper(category) + ' Values of the Decade', height=800, width=1200, template='seaborn', 
+            labels={'index': 'Rating', 'value': 'Value'}))
+
+with st.expander('Details'):
+    st.write("Here, we look at the distribution of each feature of the top 10 dataset. The values include the various", 
+            "columns: 'bpm', 'nrgy', 'dnce', 'dB', 'live', 'val', 'dur', 'acous', 'spch', and 'pop.' We assume, that the", 
+            "target, popularity, is developed with the use of the other features. In other words, popularity is a product", 
+            "of a song's bpm, energy, etc. We see how some features have a normal distribution, while others have a right", 
+            "or left skew. ")
