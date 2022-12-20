@@ -102,9 +102,29 @@ st.subheader('Most Unpopular Songs')
 
 start_numbers, end_numbers = st.select_slider('Select a popularity score', options=range(0,18), value=[0,5])
 
+# Filter dataset by popularity number
 st.cache()
-st.table(unpopular[unpopular['popularity'].between(start_numbers, end_numbers)].sort_values(by='popularity', ascending=True))
+st.table(unpopular[unpopular['popularity'].between(start_numbers, end_numbers)].sort_values(by='popularity', ascending=True).head(20))
 
 with st.expander('Details'):
-    st.write('')
+    st.write('Here, you are able to filter the dataset by  popularity.')
 
+st.title('')
+
+st.title('')
+
+###############################################################
+
+st.subheader('Distribution of Metrics for Tracks in Unpopular Dataset')
+
+category = st.multiselect('What categories do you want to look at', ['danceability', 'energy', 'key', 'loudness', 
+                'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms'])
+for i in category:
+    st.write(px.histogram(unpopular[i], title='Distribution of ' +  str.upper(i) + ' for Tracks Amongst Unpopular Songs', 
+            height=800, width=1200, template='plotly_dark', color_discrete_sequence=['green']))
+
+with st.expander('Details'):
+    st.write("This series of graphs illustrates the distribution of features in the unpopular dataset. These features range from", 
+        "'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness',", 
+        "'valence', 'tempo', to 'duration_ms.' Most of the distributions appear normaly distributed, some are uniform distribution,", 
+        "and others are skewed to either the right. Outliers are also visible in the distribution  of some metrics. ")
