@@ -14,4 +14,4 @@
 ## Purpose
 We conducted exploratory data analysis on Spotify playlists, songs, and artist data. We were able to identify trends in spotify users, the most popular songs of each decade, and unpopular song features. Finally, we illustrated the relationship between music awards and popular culture with the most popular artists on the platform.
 
-## Website : https://spotify-eda.onrender.com
+## Website : [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://spotify-eda.onrender.com)
